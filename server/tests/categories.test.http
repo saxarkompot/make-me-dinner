@@ -1,0 +1,54 @@
+###
+POST http://localhost:3001/auth/
+content-type: application/json
+
+{"username":"ivan@dev-pro.net","password":"ivan"}
+### Get all
+GET http://localhost:3001/categories/
+### Get by id
+GET http://localhost:3001/categories/4
+###
+POST http://localhost:3001/categories/
+content-type: application/json
+
+{
+    "id": 4,
+    "name":"Tested"
+}
+###
+PUT http://localhost:3001/categories/4
+content-type: application/json
+
+{
+    "name":"test"
+}
+###
+POST http://localhost:3001/categories/4/dishes
+content-type: application/json
+
+{
+    "name": "Салат",
+    "description": "Test dish description",
+    "price": 13
+}
+###
+PUT http://localhost:3001/categories/4/dishes/11
+content-type: application/json
+
+{
+    "name":"Test dish"
+}
+###
+GET http://localhost:3001/categories/4/dishes
+###
+DELETE http://localhost:3001/categories/4/dishes/11
+###
+POST http://localhost:3001/categories/4/images/
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary393K9l94yUYSfz23
+
+< ./image.body
+###
+GET http://localhost:3001/categories/4/images/default
+###
+DELETE http://localhost:3001/categories/4
+###

@@ -1,0 +1,32 @@
+{
+  "name": "lunch-delivery-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "migrate": "del sequelize-meta.json && sequelize db:migrate",
+    "seed": "npm run migrate && del sequelize-data.json && sequelize db:seed:all",
+    "postinstall": "npm run seed",
+    "start": "nodemon ./bin/www --ignore migrations/ --ignore seeders/ --ignore sequelize*.json --ignore tests/"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.1",
+    "debug": "~2.2.0",
+    "express": "^4.16.4",
+    "express-session": "^1.14.1",
+    "jade": "~1.11.0",
+    "morgan": "^1.9.1",
+    "multer": "^1.2.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "sequelize": "^3.24.3",
+    "sequelize-cli": "^5.4.0",
+    "serve-favicon": "^2.5.0",
+    "sqlite3": "^4.0.6"
+  },
+  "devDependencies": {
+    "del-cli": "^0.2.0",
+    "nodemon": "^1.11.0"
+  }
+}
