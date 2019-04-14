@@ -1,0 +1,593 @@
+[{
+        "name": "APPETIZERS AND SALADS",
+        "dishes": [{
+                "name": "SALMON TARTAR",
+                "weight": 130,
+                "prise": 315,
+                "description": "Chopped salmon, gherkins and shallots, served with salmon roe, asparagus and kaiso seaweed"
+            },
+            {
+                "name": "SASHIMI SALAD",
+                "weight": 480,
+                "prise": 440,
+                "description": "Salmon, red snapper, tuna, octopus, prawns, lettuce, asparagus, broccoli, cauliflower and cherry tomatoes with special sauce"
+            },
+            {
+                "name": "HOTATE NIPPON SALAD",
+                "weight": 195,
+                "prise": 340,
+                "description": "Japanese tartar with scallop, asparagus, tomatoes, tobiko with tomato-mint sauce"
+            },
+            {
+                "name": "OISHI SUBARASHI THAI",
+                "weight": 195,
+                "prise": 340,
+                "description": "Original Japanese appetizer with red snapper and young asparagus with mint sauce"
+            },
+            {
+                "name": "MAGURO AVOCADO",
+                "weight": 145,
+                "prise": 195,
+                "description": "Salad with tuna, avocado, tomato, flying fish roe and mustard dressing"
+            },
+            {
+                "name": "KAISO SALAD",
+                "weight": 130,
+                "prise": 320,
+                "description": "Japanese seaweed variety salad with peanut or Ponzu sauce"
+            },
+            {
+                "name": "EBI AVOCADO SALAD",
+                "weight": 250,
+                "prise": 467,
+                "description": "Salad with prawns, avocado, tomato, salmon roe, black olives and wasabi-mayonnaise sauce"
+            },
+            {
+                "name": "TUNA WITH OLIVE SAUSE",
+                "weight": 145,
+                "prise": 335,
+                "description": "Slightly roasted tuna with black olives and anchovies sauce"
+            },
+            {
+                "name": "SAN TORI SALAD",
+                "weight": 335,
+                "prise": 390,
+                "description": "Two kinds of seaweed, prawns, salmon,octopus, squid, cuttlefish and mussels with peanut or Ponzu sauce"
+            },
+            {
+                "name": "CITRUS TUNA WITH SEAWEED AND AIOLI WASABI SAUCE",
+                "weight": 245,
+                "prise": 320,
+                "description": "Citrus tuna, Hiyashi-Wakame seaweed, black gellee mushrooms, cucumbers and avocado dressed with aioli-wasabi sauce. Served with peanut sauce"
+            },
+            {
+                "name": "SALAD WITH ARUGULA AND SEAFOOD",
+                "weight": 220,
+                "prise": 310,
+                "description": "Salad with arugula, shrimps, mussels, cherry tomatoes and cucumber dressed with lemon-olive sauce"
+            },
+            {
+                "name": "SEAWEED SALAD",
+                "weight": 100,
+                "prise": 160,
+                "description": "Spirulina seaweed served with peanut or Ponzu sauce"
+            },
+            {
+                "name": "SALAD WITH MANGO AND CRAB",
+                "weight": 280,
+                "prise": 662,
+                "description": "Salad with crab meat, avocado, tomatoes, mango, arugula and quail eggs dressed with cocktail sauce"
+            },
+            {
+                "name": "SALAD WITH BEEF and staffed pepper",
+                "weight": 220,
+                "prise": 255,
+                "description": "Salad with tender beef, stuffed pepper, arugula, сherry tomatoes and Japanese wasabi dressing"
+            },
+            {
+                "name": "YAM NUA YAM",
+                "weight": 370,
+                "prise": 255,
+                "description": "Salad of tender beef with cherry tomatoes, cucumbers, celery, spring onions, fresh chili and spicy Thai sauce"
+            },
+            {
+                "name": "TUN TONG",
+                "weight": 240,
+                "prise": 170,
+                "description": "Crispy Thai dumplings with minced shrimps with chicken, sweet corn, shiitake mushrooms.Served with sweet sour chili sauce"
+            },
+            {
+                "name": "YAM HET HU NU KHAO",
+                "weight": 455,
+                "prise": 231,
+                "description": "Salad with white coral mushrooms, chopped pork, tiger shrimp and vegetables, served with spicy Thai sauce"
+            },
+            {
+                "name": "YAM PRA SALMON",
+                "weight": 250,
+                "prise": 235,
+                "description": "Traditional spicy Thai salad with salmon, tomatoes, onions, celery, ginger and lemon zest"
+            },
+            {
+                "name": "YAM TALAY ROUM",
+                "weight": 250,
+                "prise": 515,
+                "description": "Traditional spicy Thai salad with mussels, shrimps, squid, octopus, scallops, cherry tomatoes, celery, onion and garlic with spicy sauce"
+            },
+            {
+                "name": "KUNG GARDEN",
+                "weight": 430,
+                "prise": 453,
+                "description": "Dainty salad with king prawns, iceberg, romaine and frisee salad with the addition of aromatic basil and mint. Served with melting avocado sauce"
+            }
+        ]
+    },
+    {
+        "name": "HOT APPETIZERS",
+        "dishes": [{
+                "name": "GYOZA",
+                "weight": 120,
+                "prise": 160,
+                "description": "Japanese dumplings with pork and spices"
+            },
+            {
+                "name": "SHRIMP TEMPURA",
+                "weight": 80,
+                "prise": 222,
+                "description": "Lightly fried in tempura shrimps, zucchini, carrot"
+            },
+            {
+                "name": "ASSORTED TEMPURA",
+                "weight": 175,
+                "prise": 276,
+                "description": "Lightly fried in tempura shrimps, squid, salmon, zucchini, shampignons, bell pepper and carrot"
+            },
+            {
+                "name": "VEGETABLE TEMPURA",
+                "weight": 150,
+                "prise": 135,
+                "description": "Lightly fried in tempura, vegetables: bell pepper, carrot, zucchini, broccoli and asparagus"
+            },
+            {
+                "name": "SAMOSA",
+                "weight": 130,
+                "prise": 145,
+                "description": "Chicken, potatoes, onions and carrots in crispy rice pancakes"
+            },
+            {
+                "name": "KAO TUNG NA TANG",
+                "weight": 60,
+                "prise": 195,
+                "description": "Airy shrimp chips served with original Thai sauce (based on coconut milk with nuts, pork and shrimps)"
+            },
+            {
+                "name": "PO PETOD",
+                "weight": 170,
+                "prise": 345,
+                "description": "Deep fried spring rolls filled with vegetables, shrimp, chicken, black mushrooms gellee and transparent noodles. Served with plum sauce"
+            },
+            {
+                "name": "DIM SUM FESTIVAL",
+                "weight": 300,
+                "prise": 355,
+                "description": "Four kind of Thai dumplings served in original asian steamed baskets with different sauces"
+            }
+        ]
+    },
+    {
+        "name": "SUSHI BAR",
+        "dishes": [{
+                "name": "SMALL SUSHI SET",
+                "weight": 270,
+                "prise": 275,
+                "description": "Six kinds of sushi: tuna, salmon, shrimp, octopus, flying fish roe, red snapper and a half of tekka maki"
+            },
+            {
+                "name": "BEST SUSHI COMBINATION",
+                "weight": 500,
+                "prise": 611,
+                "description": "Set of twelve kinds of fish: tuna, red snapper, salmon, shrimp, squid, octopus, flying fish roe, eel, yellow tail, mackerel, scallop and tekka maki"
+            },
+            {
+                "name": "SUSHI AND SASHIMI SET",
+                "weight": 300,
+                "prise": 550,
+                "description": "Sushi: tuna, red snapper, salmon shrimp, yellow tail; Sashimi: tuna, red snapper, octopus, squid, mackerel"
+            }
+        ]
+    },
+    {
+        "name": "MAKI SUSHI",
+        "dishes": [{
+                "name": "KAPPA MAKI",
+                "weight": 90,
+                "prise": 65,
+                "description": "CUCUMBER"
+            },
+            {
+                "name": "UNAGI MAKI",
+                "weight": 100,
+                "prise": 133,
+                "description": "EEL AND CUCUMBER"
+            },
+            {
+                "name": "SHAKE MAKI",
+                "weight": 100,
+                "prise": 105,
+                "description": "SALMON"
+            },
+            {
+                "name": "AVOCADO MAKI",
+                "weight": 90,
+                "prise": 89,
+                "description": "AVOCADO"
+            },
+            {
+                "name": "TEKKA MAKI ",
+                "weight": 100,
+                "prise": 115,
+                "description": "TUNA"
+            }
+        ]
+    },
+    {
+        "name": "HAND ROLLS",
+        "dishes": [{
+                "name": "MAGURO HAND ROLL",
+                "weight": 105,
+                "prise": 120,
+                "description": "Tuna, green salad, avocado, cucumber, mayonnaise"
+            },
+            {
+                "name": "UNAGI HAND ROLL",
+                "weight": 90,
+                "prise": 115,
+                "description": "Eel, cucumber, green salad"
+            },
+            {
+                "name": "SHAKE HAND ROLL",
+                "weight": 110,
+                "prise": 140,
+                "description": "Salmon, salmon roe, green salad, avocado, cucumber, mayonnaise"
+            },
+            {
+                "name": "HOTATE HAND ROLL",
+                "weight": 110,
+                "prise": 259,
+                "description": "Scallop, flying fish roe, spring onions, mayonnaise"
+            },
+            {
+                "name": "EBI HAND ROLL",
+                "weight": 120,
+                "prise": 105,
+                "description": "Shrimp, avokado, flying fish roe, green salad, cucumber, mayonnaise"
+            }
+        ]
+    },
+    {
+        "name": "SUSHI",
+        "dishes": [{
+                "name": "SUSHI DONUT",
+                "weight": 220,
+                "prise": 255,
+                "description": "Chopped salmon with cream cheese and tobiko in round roll decorated with tuna, salmon and avocado"
+            },
+            {
+                "name": "MAGURO",
+                "weight": 30,
+                "prise": 45,
+                "description": "TUNA"
+            },
+            {
+                "name": "SHAKE",
+                "weight": 29,
+                "prise": 45,
+                "description": "SALMON"
+            },
+            {
+                "name": "HAMACHE",
+                "weight": 30,
+                "prise": 145,
+                "description": "YELLOW TAIL"
+            },
+            {
+                "name": "HOTATE",
+                "weight": 45,
+                "prise": 105,
+                "description": "SCALLOP"
+            },
+            {
+                "name": "AMA EBI",
+                "weight": 30,
+                "prise": 65,
+                "description": "SWEET SHRIMP"
+            },
+            {
+                "name": "CRAB MEAT",
+                "weight": 31,
+                "prise": 220,
+                "description": "CRAB MEAT"
+            },
+            {
+                "name": "EBI",
+                "weight": 32,
+                "prise": 49,
+                "description": "TIGER SHRIMP"
+            },
+            {
+                "name": "UNAGI",
+                "weight": 29,
+                "prise": 59,
+                "description": "EEL"
+            },
+            {
+                "name": "TAI",
+                "weight": 26,
+                "prise": 32,
+                "description": "RED SNAPPER"
+            },
+            {
+                "name": "TOBIKO",
+                "weight": 29,
+                "prise": 45,
+                "description": "FLYING FISH ROE"
+            },
+            {
+                "name": "SABO",
+                "weight": 15,
+                "prise": 30,
+                "description": "MACKEREL"
+            },
+            {
+                "name": "TOBIKO UZURA",
+                "weight": 50,
+                "prise": 45,
+                "description": "FLYING FISH ROE WITH EGG"
+            },
+            {
+                "name": "TAKO",
+                "weight": 30,
+                "prise": 72,
+                "description": "OCTOPUS"
+            },
+            {
+                "name": "IKA",
+                "weight": 30,
+                "prise": 69,
+                "description": "SQUID"
+            },
+            {
+                "name": "IKURA",
+                "weight": 27,
+                "prise": 85,
+                "description": "SALMON ROE"
+            },
+            {
+                "name": "FELIX WITH TUNA",
+                "weight": 45,
+                "prise": 65,
+                "description": "Scallop, flying fish roe, spring onions, mayonnaise"
+            },
+            {
+                "name": "FELIX WITH SALMON",
+                "weight": 55,
+                "prise": 62,
+                "description": "Salmon, flying fish roe, spring onions, mayonnaise"
+            },
+            {
+                "name": "FELIX WITH SCALLOP",
+                "weight": 42,
+                "prise": 129,
+                "description": "SCALLOP"
+            }
+        ]
+    },
+    {
+        "name": "SASHIMI COMBINATIONS",
+        "dishes": [{
+                "name": "ASSORTED SASHIMI",
+                "weight": 300,
+                "prise": 610,
+                "description": "Ten pieces of fish: tuna, salmon, red snapper, octopus, yellow tail"
+            },
+            {
+                "name": "BEST ASSORTED SASHIMI",
+                "weight": 455,
+                "prise": 760,
+                "description": "Seventeen pieces of fish: tuna, salmon, red snapper, yellow tail, sweet shrimp, scallop, eel, mackerel, octopus"
+            }
+        ]
+    },
+    {
+        "name": "SASHIMI",
+        "dishes": [{
+                "name": "SHAKE",
+                "weight": 60,
+                "prise": 115,
+                "description": "SALMON"
+            },
+            {
+                "name": "EBI",
+                "weight": 455,
+                "prise": 760,
+                "description": "TIGER SHRIMP"
+            },
+            {
+                "name": "HAMACHI / YELLOW TAIL",
+                "weight": 55,
+                "prise": 195,
+                "description": "YELLOW TAIL"
+            },
+            {
+                "name": "MAGURO",
+                "weight": 30,
+                "prise": 67,
+                "description": "TUNA"
+            },
+            {
+                "name": "UNAGI",
+                "weight": 45,
+                "prise": 75,
+                "description": "EEL"
+            },
+            {
+                "name": "TAI",
+                "weight": 35,
+                "prise": 40,
+                "description": "RED SNAPPER"
+            },
+            {
+                "name": "HOTATE",
+                "weight": 65,
+                "prise": 123,
+                "description": "SCALLOP"
+            },
+            {
+                "name": "TAKO",
+                "weight": 51,
+                "prise": 100,
+                "description": "OCTOPUS"
+            },
+            {
+                "name": "AMA EBI",
+                "weight": 47,
+                "prise": 70,
+                "description": "SWEET SHRIMP"
+            },
+            {
+                "name": "IKA",
+                "weight": 55,
+                "prise": 80,
+                "description": "SQUID"
+            },
+            {
+                "name": "SABO",
+                "weight": 37,
+                "prise": 45,
+                "description": "MACKEREL"
+            }
+        ]
+    },
+    {
+        "name": "MAKI ROLLS",
+        "dishes": [{
+                "name": "TSUBAKI ROLL",
+                "weight": 200,
+                "prise": 190,
+                "description": "Tuna, avocado, cucumber, sesame seeds, tоgarashi pepper, mayonnaise"
+            },
+            {
+                "name": "DRAGON ROLL",
+                "weight": 250,
+                "prise": 269,
+                "description": "Ell, avocado, cucumber, sesame seeds"
+            },
+            {
+                "name": "EEL PHILADELPHIA",
+                "weight": 235,
+                "prise": 255,
+                "description": "Eel, сream-cheese, avocado, sesame seeds"
+            },
+            {
+                "name": "SAN SEI",
+                "weight": 310,
+                "prise": 570,
+                "description": "Crab, salmon, cream cheese, red caviar, cucumber"
+            },
+            {
+                "name": "YAKUZA UNAGI",
+                "weight": 250,
+                "prise": 335,
+                "description": "Shrimp, eel, cream cheese, tobiko caviar"
+            },
+            {
+                "name": "IGOR ROLL",
+                "weight": 220,
+                "prise": 398,
+                "description": "Scallop, flying fish roe, mayonnaise, spring onions and sesame seeds"
+            },
+            {
+                "name": "CALIFORNIA WITH SALMON",
+                "weight": 190,
+                "prise": 183,
+                "description": "Salmon, flying fish roe, cucumber, avocado, mayonnaise"
+            },
+            {
+                "name": "SALMON PHILADELPHIA",
+                "weight": 265,
+                "prise": 283,
+                "description": "Salmon, сream-cheese, аvocado"
+            },
+            {
+                "name": "EBI TEMPURA UNAGI ROLL",
+                "weight": 270,
+                "prise": 295,
+                "description": "Shrimp in tempura, eel, cucumber, avocado, mayonnaise"
+            },
+            {
+                "name": "YELLOW DRAGON ROLL",
+                "weight": 250,
+                "prise": 270,
+                "description": "Salmon, eel, cucumber, avocado, mayonnaise"
+            },
+            {
+                "name": "RED DRAGON ROLL",
+                "weight": 235,
+                "prise": 270,
+                "description": "Eel, tuna, shrimp, flying fish roe, togarashi pepper, cucumber, mayonnaise"
+            },
+            {
+                "name": "CALIFORNIA ROLL",
+                "weight": 260,
+                "prise": 420,
+                "description": "Crab meat, flying fish roe, cucumber, avocado, mayonnaise"
+            }
+        ]
+    },
+    {
+        "name": "SOUP",
+        "dishes": [{
+            "name": "MISO SOUP",
+            "weight": 245,
+            "prise": 95,
+            "description": "Traditional Japanese soup with tofu and wakame seaweed"
+        }, 
+        {
+            "name": "DOBIN MUSHI SOUP",
+            "weight": 270,
+            "prise": 95,
+            "description": "Clear broth with chicken, shrimp and champignons"
+        }, 
+        {
+            "name": "JAPANESE UNAGI SOUP",
+            "weight": 320,
+            "prise": 213,
+            "description": "Japanese soup with eel, egg, shiitake mushrooms, spring onions and celery"
+        }, 
+        {
+            "name": "TEMPURA NOODLE SOUP",
+            "weight": 505,
+            "prise": 145,
+            "description": "Japanese green tea noodle soup with prawn, zucchini and champignon tempura"
+        }, 
+        {
+            "name": "UDON SEAFOOD SOUP",
+            "weight": 505,
+            "prise": 145,
+            "description": "Japanese soup on dobi mushi broth with shrimp, calamari, octopus, salmon, scallops, mussels, udon noodles"
+        }, 
+        {
+            "name": "SEAFOOD MISO SOUP",
+            "weight": 430,
+            "prise": 497,
+            "description": "Miso soup with shrimp, seabass, octopus, mussels, oyster mushrooms, shiitake and tofu"
+        }, 
+        {
+            "name": "CHICKEN SOUP WITH CHERRY TOMATOES",
+            "weight": 335,
+            "prise": 165,
+            "description": "Chicken soup with cherry tomatoes, potatoes, shallots, ginger, garlic and celery"
+        }, 
+    ]
+    }
+]
