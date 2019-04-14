@@ -1,0 +1,27 @@
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "lunchDelivery_dev",
+    "dialect": "sqlite",
+		"storage": "lunchDelivery_dev.sqlite",
+ 		"migrationStorage": "json",
+		"seederStorage": "json"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "lunchDelivery_test",
+    "dialect": "sqlite",
+ 		"migrationStorage": "json",
+		"seederStorage": "json"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "lunchDelivery_prod",
+    "dialect": "sqlite",
+ 		"migrationStorage": "json",
+		"seederStorage": "json"
+  }
+}

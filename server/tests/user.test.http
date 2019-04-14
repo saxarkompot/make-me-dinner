@@ -1,0 +1,38 @@
+###
+POST http://localhost:3001/auth/
+content-type: application/json
+
+{"username":"ivan@dev-pro.net","password":"ivan"}
+###
+GET http://localhost:3001/users/me
+###
+GET http://localhost:3001/users/me/orders 
+###
+GET  http://localhost:3001/users/
+content-type: application/json
+
+
+
+###
+
+POST http://localhost:3001/users/
+content-type: application/json
+
+{
+"lastName":"testing",
+"email": "testing@gmail.com",
+"name":"tested" }
+
+###
+
+
+DELETE http://localhost:3001/users/28
+content-type: application/json
+
+###
+
+
+PUT http://localhost:3001/users/3
+content-type: application/json
+
+{"email": "admin@gmail.com"}
