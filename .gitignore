@@ -1,4 +1,7 @@
 node_modules
 /images
 /my-app
-package-lock.json
+/server/sequelize-data.json
+*.sqlite
+/server/sequelize-meta.json
+/main_project/build/css/all.css

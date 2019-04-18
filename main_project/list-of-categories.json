@@ -547,47 +547,47 @@
     {
         "name": "SOUP",
         "dishes": [{
-            "name": "MISO SOUP",
-            "weight": 245,
-            "prise": 95,
-            "description": "Traditional Japanese soup with tofu and wakame seaweed"
-        }, 
-        {
-            "name": "DOBIN MUSHI SOUP",
-            "weight": 270,
-            "prise": 95,
-            "description": "Clear broth with chicken, shrimp and champignons"
-        }, 
-        {
-            "name": "JAPANESE UNAGI SOUP",
-            "weight": 320,
-            "prise": 213,
-            "description": "Japanese soup with eel, egg, shiitake mushrooms, spring onions and celery"
-        }, 
-        {
-            "name": "TEMPURA NOODLE SOUP",
-            "weight": 505,
-            "prise": 145,
-            "description": "Japanese green tea noodle soup with prawn, zucchini and champignon tempura"
-        }, 
-        {
-            "name": "UDON SEAFOOD SOUP",
-            "weight": 505,
-            "prise": 145,
-            "description": "Japanese soup on dobi mushi broth with shrimp, calamari, octopus, salmon, scallops, mussels, udon noodles"
-        }, 
-        {
-            "name": "SEAFOOD MISO SOUP",
-            "weight": 430,
-            "prise": 497,
-            "description": "Miso soup with shrimp, seabass, octopus, mussels, oyster mushrooms, shiitake and tofu"
-        }, 
-        {
-            "name": "CHICKEN SOUP WITH CHERRY TOMATOES",
-            "weight": 335,
-            "prise": 165,
-            "description": "Chicken soup with cherry tomatoes, potatoes, shallots, ginger, garlic and celery"
-        }, 
-    ]
+                "name": "MISO SOUP",
+                "weight": 245,
+                "prise": 95,
+                "description": "Traditional Japanese soup with tofu and wakame seaweed"
+            },
+            {
+                "name": "DOBIN MUSHI SOUP",
+                "weight": 270,
+                "prise": 95,
+                "description": "Clear broth with chicken, shrimp and champignons"
+            },
+            {
+                "name": "JAPANESE UNAGI SOUP",
+                "weight": 320,
+                "prise": 213,
+                "description": "Japanese soup with eel, egg, shiitake mushrooms, spring onions and celery"
+            },
+            {
+                "name": "TEMPURA NOODLE SOUP",
+                "weight": 505,
+                "prise": 145,
+                "description": "Japanese green tea noodle soup with prawn, zucchini and champignon tempura"
+            },
+            {
+                "name": "UDON SEAFOOD SOUP",
+                "weight": 505,
+                "prise": 145,
+                "description": "Japanese soup on dobi mushi broth with shrimp, calamari, octopus, salmon, scallops, mussels, udon noodles"
+            },
+            {
+                "name": "SEAFOOD MISO SOUP",
+                "weight": 430,
+                "prise": 497,
+                "description": "Miso soup with shrimp, seabass, octopus, mussels, oyster mushrooms, shiitake and tofu"
+            },
+            {
+                "name": "CHICKEN SOUP WITH CHERRY TOMATOES",
+                "weight": 335,
+                "prise": 165,
+                "description": "Chicken soup with cherry tomatoes, potatoes, shallots, ginger, garlic and celery"
+            }
+        ]
     }
 ]

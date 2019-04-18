@@ -56,7 +56,10 @@ function scripts() {
 function watch(){
     browserSync.init({//инициализирует синхронизацию
         server: {
-            baseDir: "./" // сервер указывает в какой папке искать наш HTML файл
+            baseDir: "./", // сервер указывает в какой папке искать наш HTML файл            
+        },
+        ui: {
+            port: 3010
         },
         tunnel: false // создает временный адрес, который можно просматривать с других машин
     });
@@ -84,4 +87,4 @@ gulp.task('build', gulp.series(clean,
                      gulp.parallel(styles, scripts)
                      ));
 // dev запускает серию, сначала build, а потом watch
-gulp.task('dev', gulp.series('build','watch'))
+gulp.task('dev', gulp.series('build','watch'));
