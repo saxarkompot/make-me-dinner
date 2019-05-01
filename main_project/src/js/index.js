@@ -17,9 +17,9 @@ let divs = {
   sum: '<div class="sum">0</div>'
 };
 
-let sumOfDishes = $(".sumOfDishes");
+let $sumOfDishes = $(".sumOfDishes");
 
-$.get("http://localhost:3001/categories/", function (data) {
+$.get("http://127.0.0.1:3001/categories/", function (data) {
   for (let i = 0; i < data.length; i++) {
     let dishes = data[i].dishes;
     let category = $("<div class='category'/>");
@@ -45,6 +45,7 @@ $.get("http://localhost:3001/categories/", function (data) {
       }
       dishEl.find(".plus").click(float.bind(dishEl.find(".plus"), dataContext));
       dishEl.find(".minus").click(substract.bind(dishEl.find(".minus"), dataContext));
+      dishEl.find(".sum").attr("dishId", dataContext.dish.id).data("order", dataContext);
       category.append(dishEl);
     }
     divOfDishes.append(category);
@@ -62,7 +63,8 @@ function float(dishContext) {
   let sums = this.parents('.full-dish').find(".sum");
   sums.html(++dishContext.orders);
   sumOfPrices += floatDIsh;
-  sumOfDishes.html(`<span class="counter">${counter}</span>/${sumOfPrices}грн.`);
+  $sumOfDishes.html(`<span class="counter">${counter}</span>/${sumOfPrices}грн.`);
+  getOrder(dishContext.dish.id);
 }
 function substract(dishContext) {
   console.log(this);
@@ -72,7 +74,8 @@ function substract(dishContext) {
   let sums = this.parents('.full-dish').find('.sum');
   sums.html(--dishContext.orders);
   sumOfPrices -= floatDIsh;
-  sumOfDishes.html(`<span class="counter">${counter}</span>/${sumOfPrices}грн.`);
+  $sumOfDishes.html(`<span class="counter">${counter}</span>/${sumOfPrices}грн.`);
+  deleteDish(dishContext.dish.id);
 }
 
 let $email = $("#exampleInputEmail1");
@@ -93,12 +96,37 @@ function getPersonData() {
   $.get("http://localhost:3001/users/me", function (data, textStatus, jqXHR) {
     if (jqXHR.status != 200) return;
     let $helloDiv = $("<div class='hello-text'/>");
-    $(".form").replaceWith($helloDiv.html(`Hello <span class="person-name">${data.name} ${data.lastName}</span> !`))
-  });
+    $(".form").replaceWith($helloDiv.html(`Hello <span class="person-name">${data.name} ${data.lastName}</span> !`));
 
+    $.get("http://localhost:3001/users/me/orders", function (data) {
+      for (let i = 0; i < data.length; i++) {
+        $(`[dishId|=${data[i].dishId}]`).html(data[i].amount);
+        $(`[dishId|=${data[i].dishId}]`).data("order").orders = data[i].amount;
+        counter += data[i].amount;
+        sumOfPrices += data[i].amount * data[i].dish.price;
+      }
+      $sumOfDishes.html(`<span class="counter">${counter}</span>/${sumOfPrices}грн.`);
+    })
+  });
 };
 
-getPersonData();
+let arrayOfDishes = [];
 
+function getOrder(dishId) {
+  $.post(
+    "http://localhost:3001/users/me/orders",
+    JSON.stringify({ "dishId": dishId })
+  )
+}
+
+function deleteDish(dishId) {
+  $.ajax({
+    url: 'http://localhost:3001/users/me/orders',
+    type: 'DELETE',
+    data: JSON.stringify({ "dishId": dishId })
+  });
+}
+
+getPersonData();
 
 $buttonSend.click(login);
