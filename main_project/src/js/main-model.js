@@ -24,7 +24,7 @@ class MainModel {
             if (jqXHR.status != 200) return;
             this.user = { "name": data.name, "lastName": data.lastName };
             this.onUserChange();
-            this.fetchOrders();            
+            this.fetchOrders();
         });
     };
 

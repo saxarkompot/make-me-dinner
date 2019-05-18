@@ -1,13 +1,13 @@
-/**
- * Set on onMinusClick and onPlusClick properties to handle minus/plus events
- */
-class MainView {
+class CartView {
+    constructor() {
+        $(".cart").click(() => this.onCartClick());
+    }
     render(model, hide) {
-        let divOfDishes = $(".middle");
+        let divOfDishes = $(".middle-cart");
         if (hide) {
             divOfDishes.hide(); // clear a div before filling it
         }
-        else{
+        else {
             divOfDishes.show();
         }
         divOfDishes.html("");
@@ -16,21 +16,11 @@ class MainView {
             minus: '<div class="minus"><img class="left-arrow"src="img/icons/arrow.png" alt=" "></div>',
             sum: '<div class="sum">0</div>'
         };
-
         // render all categories
-        for (let i = 0; i < model.categories.length; i++) {
-            let dishes = model.categories[i].dishes;
-            let nameOfCategory = model.categories[i].name;
-            let imageOfCategory = model.categories[i].imageUrl;
-            let category = $(`<div class='category'>
-                              <div class="category-name-image">
-                              <div class="category-name">${nameOfCategory}</div>
-                              <div class="category-image"><img src="${imageOfCategory}" alt=" "</div>
-                              </div></div>`);
-            for (let k = 0; k < dishes.length; k++) {
-                let nameOfDish = dishes[k].name;
-                let price = dishes[k].price;
-                let dishEl = $(`<div class="full-dish">                              
+        for (let i = 0; i < model.orders.length; i++) {
+            let nameOfDish = model.orders[i].dish.name;
+            let price = model.orders[i].dish.price;
+            let dishEl = $(`<div class="full-dish">                              
                               <div class="dish-price">
                               <div class="dish">${nameOfDish}</div>                              
                               <div class="price">${price}грн.</div>
@@ -41,17 +31,15 @@ class MainView {
                               ${divs.plus}
                               </div>                       
                               </div>`);
-                let dataContext = {
-                    dish: dishes[k]
-                }
-                // subscribe a handler on onclick event, passing the dataContext using anonymous method
-                dishEl.find(".plus").click(() => this.onPlusClick(dataContext));
-                // subscribe a handler on onclick event, passing the dataContext using bind
-                dishEl.find(".minus").click(this.onMinusClick.bind(dishEl.find(".minus"), dataContext));
-                dishEl.find(".sum").attr("dishId", dataContext.dish.id);
-                category.append(dishEl);
+            let dataContext = {
+                dish: model.orders[i].dish
             }
-            divOfDishes.append(category);
+            // subscribe a handler on onclick event, passing the dataContext using anonymous method
+            dishEl.find(".plus").click(() => this.onPlusClick(dataContext));
+            // subscribe a handler on onclick event, passing the dataContext using bind
+            dishEl.find(".minus").click(this.onMinusClick.bind(dishEl.find(".minus"), dataContext));
+            dishEl.find(".sum").attr("dishId", dataContext.dish.id);
+            divOfDishes.append(dishEl);
         }
 
         let counter = 0;
@@ -64,5 +52,6 @@ class MainView {
         }
         let $sumOfDishes = $(".sumOfDishes");
         $sumOfDishes.html(`<span class="counter">${counter}</span>/${sumOfPrices}грн.`);
+        
     }
 }
