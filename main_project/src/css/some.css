@@ -113,6 +113,14 @@ button {
     font-size: 20px;
 }
 
+.middle-profile{
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    top: 100px;
+    font-size: 20px;
+}
 .category-name-image img {
     border-radius: 20px;
     background-color: rgba(228, 86, 164, 0.658);

@@ -15,4 +15,5 @@ let mainView = new MainView();
 let mainModel = new MainModel();
 let loginView = new LoginView();
 let cartView = new CartView();
-let mainController = new MainController(mainModel, mainView, loginView);
+let profileView = new ProfileView();
+let mainController = new MainController(mainModel, mainView, loginView, profileView);

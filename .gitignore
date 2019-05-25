@@ -5,3 +5,4 @@ node_modules
 *.sqlite
 /server/sequelize-meta.json
 /main_project/build/css/all.css
+/main_project/debug.log
