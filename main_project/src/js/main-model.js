@@ -2,37 +2,39 @@ class MainModel {
     constructor() {
         this.orders = [];
         this.categories = [];
-        $.get("http://localhost:3001/categories/", (data) => {
-            this.categories = data;
-            this.onchange()
-        });
+        $.get("http://localhost:3001/categories/")
+            .then((data) => {
+                this.categories = data;
+                this.onchange()
+            });
         this.user = null;
-        this.getPersonData();
+        this.getPersonData().then(() => this.fetchOrders());
     }
     login(username, password) {
         $.post(
             "http://localhost:3001/auth/",
-            JSON.stringify({ "username": username, "password": password }),
-            (data, textStatus, jqXHR) => {
+            JSON.stringify({ "username": username, "password": password }))
+            .then((data, textStatus, jqXHR) => {
                 if (jqXHR.status != 200) return;
                 this.getPersonData();
             })
     }
 
     getPersonData() {
-        $.get("http://localhost:3001/users/me", (data, textStatus, jqXHR) => {
-            if (jqXHR.status != 200) return;
-            this.user = { "name": data.name, "lastName": data.lastName };
-            this.onUserChange();
-            this.fetchOrders();            
-        });
+        return $.get("http://localhost:3001/users/me")
+            .then((data, textStatus, jqXHR) => {
+                if (jqXHR.status != 200) return;
+                this.user = { "name": data.name, "lastName": data.lastName };
+                this.onUserChange();
+            });
     };
 
     fetchOrders() {
-        $.get("http://localhost:3001/users/me/orders", (data) => {
-            this.orders = data;
-            this.onchange();
-        })
+        $.get("http://localhost:3001/users/me/orders")
+            .then((data) => {
+                this.orders = data;
+                this.onchange();
+            })
     }
 
     addOrder(dishContext) {
