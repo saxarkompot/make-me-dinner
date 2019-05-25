@@ -1,11 +1,11 @@
 class MainController {
-    constructor(model, mainView, loginView) {
+    constructor(model, mainView, loginView, profileView) {
         this.mainView = mainView;
         this.loginView = loginView;
         this.model = model;
         model.onchange = function () {
-            mainView.render(model, showCartView);
-            cartView.render(model, !showCartView);
+            mainView.render(model, activeView != mainView);
+            cartView.render(model, activeView != cartView);
         }
         model.onUserChange = function () {
             loginView.render(model);
@@ -26,13 +26,20 @@ class MainController {
             model.login(username, password)
         }
         cartView.onCartClick = function () {
-            showCartView = !showCartView;
-            mainView.render(model, showCartView);
-            cartView.render(model, !showCartView);            
+            activeView = activeView == cartView ? mainView : cartView;
+            showActiveView();
         }
-        let showCartView = false;
-        mainView.render(model, showCartView);
-        loginView.render(model);
-        cartView.render(model, !showCartView);
+        profileView.onProfileClick = function () {
+            activeView = activeView != profileView ? profileView : mainView;
+            showActiveView();
+        }
+        function showActiveView() {
+            mainView.render(model, activeView != mainView);
+            cartView.render(model, activeView != cartView);
+            profileView.render(model, activeView != profileView);
+        }
+        let activeView = mainView;
+        showActiveView();
+        loginView.render(model);        
     }
 }
