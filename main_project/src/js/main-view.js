@@ -7,7 +7,7 @@ class MainView {
         if (hide) {
             divOfDishes.hide(); // clear a div before filling it
         }
-        else{
+        else {
             divOfDishes.show();
         }
         divOfDishes.html("");
@@ -54,15 +54,8 @@ class MainView {
             divOfDishes.append(category);
         }
 
-        let counter = 0;
-        let sumOfPrices = 0;
-        // aggregate counters to render the cart
         for (let i = 0; i < model.orders.length; i++) {
             $(`[dishId|=${model.orders[i].dishId}]`).html(model.orders[i].amount);
-            counter += model.orders[i].amount;
-            sumOfPrices += model.orders[i].amount * model.orders[i].dish.price;
         }
-        let $sumOfDishes = $(".sumOfDishes");
-        $sumOfDishes.html(`<span class="counter">${counter}</span>/${sumOfPrices}грн.`);
     }
 }

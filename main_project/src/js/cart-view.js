@@ -1,14 +1,22 @@
 class CartView {
     constructor() {
-        $(".cart").click(() => this.onCartClick());
+        $(".cart,.go-to-menu").click(() => { this.onCartClick(); return false });
+        
     }
     render(model, hide) {
         let divOfDishes = $(".middle-cart");
+        let link = $(`.go-to-menu`);
+        link.html('');
+        let divOfCartLink = $(".menu-logotip");
+        link.html(`<a href="#"><--back to menu</a>`);
+        link.insertAfter(divOfCartLink);
         if (hide) {
             divOfDishes.hide(); // clear a div before filling it
+            link.hide();
         }
         else {
             divOfDishes.show();
+            link.show();
         }
         divOfDishes.html("");
         const divs = {
@@ -42,16 +50,9 @@ class CartView {
             divOfDishes.append(dishEl);
         }
 
-        let counter = 0;
-        let sumOfPrices = 0;
         // aggregate counters to render the cart
         for (let i = 0; i < model.orders.length; i++) {
             $(`[dishId|=${model.orders[i].dishId}]`).html(model.orders[i].amount);
-            counter += model.orders[i].amount;
-            sumOfPrices += model.orders[i].amount * model.orders[i].dish.price;
-        }
-        let $sumOfDishes = $(".sumOfDishes");
-        $sumOfDishes.html(`<span class="counter">${counter}</span>/${sumOfPrices}грн.`);
-        
+        }        
     }
 }
