@@ -1,6 +1,6 @@
 class ProfileView {
     constructor() {
-        $(".profile").click(() => this.onProfileClick())
+        $(".profile a:first-child").click(() => {this.onProfileClick(); return false})
     }
     render(model, hide) {
         let divOfUser = $(".middle-profile");
@@ -9,7 +9,10 @@ class ProfileView {
         }
         else {
             divOfUser.show();
-        }        
-        divOfUser.html($("<div/>").html(`${model.user.name}${model.user.lastName}`));
+        }
+        if (model.user) {
+            divOfUser.html($("<div/>").html(`${model.user.name}${model.user.lastName}`));
+        }
     }
 }
+

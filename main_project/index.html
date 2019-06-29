@@ -12,7 +12,8 @@
     <script src="src/js/main-model.js" defer></script>
     <script src="src/js/main-view.js" defer></script>
     <script src="src/js/main-controller.js" defer></script>    
-    <script src="src/js/cart-view.js" defer></script>    
+    <script src="src/js/cart-view.js" defer></script>        
+    <script src="src/js/cart-link.js" defer></script>        
     <script src="src/js/index.js" defer></script>
 </head>
 
@@ -37,12 +38,12 @@
             </div>
             <div class="cart-profile">
                 <div class="cart">
-                    <a href="#" class="cartSum"><img class="cart-img" src="img/icons/cart5.png" alt=" "><span
-                            class="sumOfDishes">0</span></a>
+                    <a href="#" class="cartSum"><span class="cart-image-span"><img class="cart-img" src="img/icons/cart5.png" alt=" "></span>
+                        <span class="sumOfDishes">0</span></a>
                 </div>
                 <div class="profile">
-                    <a href="#">profile</a>
-                </div>
+                    <a href="#">profile</a><span> | </span><a href="admin.html">admin</a>
+                </div>                
             </div>
         </div>
         <hr>
@@ -51,6 +52,7 @@
         </div>
         <div class="menu-logotip"><span class="take">T<span class="aa">a</span>k<span class="ee">e</span></span><span
                 class="sake">Sake</span><span class="sake-menu">Menu</span></div>
+                <div class='go-to-menu'></div>
         <div class="middle-cart"></div>
         <div class="middle-profile"></div>
         <div class="middle"></div>

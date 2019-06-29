@@ -8,12 +8,11 @@ $.ajaxSetup({
   },
   dataType: "json"
 });
-function toPortray() {
-}
 
 let mainView = new MainView();
 let mainModel = new MainModel();
 let loginView = new LoginView();
 let cartView = new CartView();
+let cartLink = new CartLink();
 let profileView = new ProfileView();
 let mainController = new MainController(mainModel, mainView, loginView, profileView);

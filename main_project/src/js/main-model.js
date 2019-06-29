@@ -43,10 +43,13 @@ class MainModel {
             order.amount++;
         }
         else {
-            mainModel.orders.push({ dishId: dishContext.dish.id, amount: 1, dish: dishContext.dish })
+            mainModel.orders.push({ 
+                dishId: dishContext.dish.id,
+                amount: 1,
+                dish: dishContext.dish
+            })
         }
-        this.postDish(dishContext.dish.id);
-        this.onchange()
+        this.postDish(dishContext.dish.id).then(()=>{this.onchange(); this.dishAdded()});
     }
 
     deleteOrder(dishContext) {
@@ -59,7 +62,7 @@ class MainModel {
     }
 
     postDish(dishId) {
-        $.post(
+        return $.post(
             "http://localhost:3001/users/me/orders",
             JSON.stringify({ "dishId": dishId })
         )
