@@ -34,7 +34,6 @@ header {
 
 .flex-div {
     display: flex;
-
 }
 
 .minus-btn {
@@ -87,7 +86,7 @@ input {
     color: white;
     position: fixed;
     top: 1px;
-    right: 1px;        
+    right: 1px;
     border-bottom-left-radius: 6px;
     height: 50px;
     padding-top: 8px;
@@ -99,8 +98,60 @@ input {
     top: 40px;
 }
 
-.tool span{
+.tool span {
     font-size: 20px;
     color: rgb(230, 240, 87);
     font-weight: bold;
+}
+
+.edit-img {
+    display: none;
+    width: 30px;
+    filter: brightness(95%);
+    float: right;
+}
+
+.edit-img:hover {
+    transition: 200ms;
+    filter: brightness(130%);
+    width: 33px;
+}
+
+.category:hover img {
+    display: inline;
+}
+
+.ok-img {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.ok-img:hover {
+    transition: 200ms;
+    filter: brightness(140%);
+}
+.ok-img:active{
+    width: 58px;
+    height: 58px;
+    filter: brightness(90%);
+}
+
+.grey{
+    position: fixed;
+    background-color: grey;
+    opacity: 0.2;
+    top: 20%;    
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 3px;
+    padding-left: 15px;
+    width: 440px;
+    height: 60px;
+}
+
+body{
+    background-color: rgb(225, 254, 255);
 }
