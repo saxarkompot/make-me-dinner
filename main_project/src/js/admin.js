@@ -7,35 +7,41 @@ let cat3 = $('.category-3');
 let cat3Html = `<header>Dish settings</header>
                 <div class="div-of-dish-settings"></div>
                 <div class="input-but">
-                <input type="text">
-                <button class="add-btn">+</button>
+                <input type="text"><div></div>                
                 </div>`;
 let selectedCategoryId;
 let arrayOfCategories;
+
+function renderAllCategories() {
+    for (let i = 0; i < arrayOfCategories.length; i++) {
+        renderCategory(arrayOfCategories[i].id, arrayOfCategories[i].name, arrayOfCategories[i].dishes);
+    };
+}
+
 function renderCategory(categoryId, categoryName, categoryDishes) {
     let divOfCategory = $(`<div class="flex-div"><div class='category'>${categoryName}
     <img class="edit-img" src="../../img/icons/n2.png" alt=""></div><button class="minus-btn">-</button></div>`);
     categories.append(divOfCategory);
     divOfCategory.find('.category').click(function () {
+        cat2.find('input').val('');
         cat3.html(cat3Html);
         headerChange(cat2, categoryName)
         dishesContainer.html('');
+        selectedCategoryId = categoryId;
         for (let j = 0; j < categoryDishes.length; j++) {
             renderDish(selectedCategoryId, categoryDishes[j].id, categoryDishes[j].name, categoryDishes[j]);
         };
-        selectedCategoryId = categoryId;
 
     });
     delCategory(categoryId, divOfCategory, categoryName);
     editCategory(divOfCategory, categoryName, categoryId);
 }
+
 function fetchCategories() {
-    $.get("http://localhost.:3001/categories", function (data, textStatus, jqXHR) {
+    $.get("http://localhost:3001/categories", function (data, textStatus, jqXHR) {
         if (jqXHR.status != 200) return;
-        for (let i = 0; i < data.length; i++) {
-            renderCategory(data[i].id, data[i].name, data[i].dishes);
-        };
         arrayOfCategories = data;
+        renderAllCategories();
     });
     addCategory();
 };
@@ -43,16 +49,14 @@ function fetchCategories() {
 fetchCategories();
 
 function renderDish(categoryId, dishId, dishName, dish) {
-    divOfDish = $(`<div class="flex-div"><div class='category'>${dishName}
-               </div><button class="minus-btn">-</button></div>`);
+    let divOfDish = $(`<div class="flex-div"><div class='category'>${dishName}
+    <img class="edit-img" src="../../img/icons/n2.png" alt=""></div><button class="minus-btn">-</button></div>`);
     dishesContainer.append(divOfDish);
     divOfDish.find('.category').click(function () {
         headerChange(cat3, dishName);
         getDivOfDishSettings().html('');
-        let dishOpt = dish;
-        for (let n in dishOpt) {
-            let divOfDishOpt = $(`<div class='flex-div'><div class='category'>${n} : 
-                ${dishOpt[n]}</div><button class="minus-btn">-</button></div>`);
+        for (let n in dish) {
+            let divOfDishOpt = $(`<div class='flex-div'><div class='dish-opt-1'>${n}</div><div class='dish-opt-2'>${dish[n]}</div></div>`);
             getDivOfDishSettings().append(divOfDishOpt);
         }
     });
@@ -60,10 +64,16 @@ function renderDish(categoryId, dishId, dishName, dish) {
 }
 
 function addCategory() {
-    cat1.find('input').click(() => { dishesContainer.html(''); headerChange(cat2, '') });
+    cat1.find('input').click(() => {
+        dishesContainer.html('');
+        headerChange(cat2, '');
+        getDivOfDishSettings().html('');
+        headerChange(cat3, '');
+        cat2.find('input').val('');
+    });
     cat1.find('.add-btn').click(function () {
         let inputData = cat1.find('input');
-        $.post(`http://localhost.:3001/categories/`, { name: `${inputData.val()}` }, function (data, textStatus, jqXHR) {
+        $.post(`http://localhost:3001/categories/`, { name: `${inputData.val()}` }, function (data, textStatus, jqXHR) {
             if (jqXHR.status != 200) return;
             data.dishes = [];
             renderCategory(data.id, data.name, data.dishes)
@@ -77,19 +87,16 @@ function addCategory() {
 function addDish() {
     cat2.find('.add-btn').click(function () {
         let inputData = cat2.find('input');
-        $.post(`http://localhost.:3001/categories/${selectedCategoryId}/dishes`,
+        if (inputData.val() == "") return;
+        if (cat2.children('header').html().indexOf(':') == -1) return;
+        $.post(`http://localhost:3001/categories/${selectedCategoryId}/dishes`,
             { name: `${inputData.val()}` },
             function (data, textStatus, jqXHR) {
                 if (jqXHR.status != 200) return;
                 renderDish(selectedCategoryId, data.id, data.name, data);
                 inputData.val('');
                 myTooltip('', data.name, 'added');
-                for (let i = 0; i < arrayOfCategories.length; i++) {
-                    if (arrayOfCategories[i].id == selectedCategoryId) {
-                        arrayOfCategories[i].dishes.push(data);
-                        break;
-                    }
-                }
+                arrayOfCategories.find((e) => e.id == selectedCategoryId).dishes.push(data);
             });
     });
 }
@@ -98,7 +105,7 @@ addDish();
 function delCategory(id, divOfData, name, ) {
     divOfData.find('.minus-btn').click(function () {
         $.ajax({
-            url: `http://localhost.:3001/categories/${id}`,
+            url: `http://localhost:3001/categories/${id}`,
             type: 'DELETE',
             data: JSON.stringify({ "id": id })
         });
@@ -118,7 +125,7 @@ function delCategory(id, divOfData, name, ) {
 function delDish(categoryId, dishId, divOfData, name) {
     divOfData.find('.minus-btn').click(function () {
         $.ajax({
-            url: `http://localhost.:3001/categories/${categoryId}/dishes/${dishId}`,
+            url: `http://localhost:3001/categories/${categoryId}/dishes/${dishId}`,
             type: 'DELETE',
             data: JSON.stringify({ "id": dishId })
         });
@@ -161,21 +168,18 @@ function editCategory(divOfCategory, categoryName, categoryId) {
         let ok = $(`<img class="ok-img" src="../../img/icons/n2.png" alt="">`);
         divOfCategory.find('.category').replaceWith(inputDiv);
         divOfCategory.find('.minus-btn').replaceWith(ok);
-        okey(divOfCategory, categoryId, categoryName, inputDiv, ok);
+        handleEventCat1(divOfCategory, categoryId, categoryName, inputDiv, ok);
         dishesContainer.html('');
         headerChange(cat2, '');
+        getDivOfDishSettings().html('');
+        headerChange(cat3, '');
     });
 }
-function protoFetchCategories() {
-    for (let i = 0; i < arrayOfCategories.length; i++) {
-        renderCategory(arrayOfCategories[i].id, arrayOfCategories[i].name, arrayOfCategories[i].dishes);
-    };
-    //addCategory();
-}
+
 function updateCategory(divOfCategory, categoryId, categoryName) {
     let newValue = divOfCategory.find('input').val();
     $.ajax({
-        url: `http://localhost.:3001/categories/${categoryId}`,
+        url: `http://localhost:3001/categories/${categoryId}`,
         type: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify({ "name": newValue }),
@@ -188,15 +192,15 @@ function updateCategory(divOfCategory, categoryId, categoryName) {
             }
             myTooltip(`Category with name: `, categoryName, 'was updated');
             categories.html('');
-            protoFetchCategories();
+            renderAllCategories(); s
         }
     });
 }
-function okey(divOfCategory, categoryId, categoryName) {
+function handleEventCat1(divOfCategory, categoryId, categoryName) {
     divOfCategory.find('input').focus().focusout(function () {
         if (divOfCategory.find('input').val() == '') {
             categories.html('');
-            protoFetchCategories();
+            renderAllCategories();
             return
         };
         updateCategory(divOfCategory, categoryId, categoryName);
@@ -207,7 +211,7 @@ function okey(divOfCategory, categoryId, categoryName) {
         }
         else if (e.which == 27) {
             categories.html('');
-            protoFetchCategories();
+            renderAllCategories();
         }
     })
 }
