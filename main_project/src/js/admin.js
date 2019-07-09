@@ -7,34 +7,41 @@ let cat3 = $('.category-3');
 let cat3Html = `<header>Dish settings</header>
                 <div class="div-of-dish-settings"></div>
                 <div class="input-but">
-                <input type="text">
-                <button class="add-btn">+</button>
+                <input type="text"><div></div>                
                 </div>`;
 let selectedCategoryId;
-let selectedCategoryDishes;
+let arrayOfCategories;
+
+function renderAllCategories() {
+    for (let i = 0; i < arrayOfCategories.length; i++) {
+        renderCategory(arrayOfCategories[i].id, arrayOfCategories[i].name, arrayOfCategories[i].dishes);
+    };
+}
+
 function renderCategory(categoryId, categoryName, categoryDishes) {
     let divOfCategory = $(`<div class="flex-div"><div class='category'>${categoryName}
-    </div><button class="minus-btn">-</button></div>`);
+    <img class="edit-img" src="../../img/icons/n2.png" alt=""></div><button class="minus-btn">-</button></div>`);
     categories.append(divOfCategory);
     divOfCategory.find('.category').click(function () {
+        cat2.find('input').val('');
         cat3.html(cat3Html);
         headerChange(cat2, categoryName)
         dishesContainer.html('');
-        let dishes = categoryDishes;
-        for (let j = 0; j < dishes.length; j++) {
-            renderDish(categoryId, dishes[j].id, dishes[j].name, dishes[j]);
-        };
         selectedCategoryId = categoryId;
-        selectedCategoryDishes = dishes;
+        for (let j = 0; j < categoryDishes.length; j++) {
+            renderDish(selectedCategoryId, categoryDishes[j].id, categoryDishes[j].name, categoryDishes[j]);
+        };
+
     });
     delCategory(categoryId, divOfCategory, categoryName);
+    editCategory(divOfCategory, categoryName, categoryId);
 }
+
 function fetchCategories() {
     $.get("http://localhost:3001/categories", function (data, textStatus, jqXHR) {
         if (jqXHR.status != 200) return;
-        for (let i = 0; i < data.length; i++) {
-            renderCategory(data[i].id, data[i].name, data[i].dishes);
-        };
+        arrayOfCategories = data;
+        renderAllCategories();
     });
     addCategory();
 };
@@ -42,16 +49,14 @@ function fetchCategories() {
 fetchCategories();
 
 function renderDish(categoryId, dishId, dishName, dish) {
-    divOfDish = $(`<div class="flex-div"><div class='category'>${dishName}
-               </div><button class="minus-btn">-</button></div>`);
+    let divOfDish = $(`<div class="flex-div"><div class='category'>${dishName}
+    <img class="edit-img" src="../../img/icons/n2.png" alt=""></div><button class="minus-btn">-</button></div>`);
     dishesContainer.append(divOfDish);
     divOfDish.find('.category').click(function () {
         headerChange(cat3, dishName);
         getDivOfDishSettings().html('');
-        let dishOpt = dish;
-        for (let n in dishOpt) {
-            let divOfDishOpt = $(`<div class='flex-div'><div class='category'>${n} : 
-                ${dishOpt[n]}</div><button class="minus-btn">-</button></div>`);
+        for (let n in dish) {
+            let divOfDishOpt = $(`<div class='flex-div'><div class='dish-opt-1'>${n}</div><div class='dish-opt-2'>${dish[n]}</div></div>`);
             getDivOfDishSettings().append(divOfDishOpt);
         }
     });
@@ -59,13 +64,22 @@ function renderDish(categoryId, dishId, dishName, dish) {
 }
 
 function addCategory() {
+    cat1.find('input').click(() => {
+        dishesContainer.html('');
+        headerChange(cat2, '');
+        getDivOfDishSettings().html('');
+        headerChange(cat3, '');
+        cat2.find('input').val('');
+    });
     cat1.find('.add-btn').click(function () {
         let inputData = cat1.find('input');
         $.post(`http://localhost:3001/categories/`, { name: `${inputData.val()}` }, function (data, textStatus, jqXHR) {
             if (jqXHR.status != 200) return;
-            renderCategory(data.id, data.name, [])
+            data.dishes = [];
+            renderCategory(data.id, data.name, data.dishes)
             inputData.val('');
-            myTooltip(data.name, 'added');
+            myTooltip('', data.name, 'added');
+            arrayOfCategories.push(data);
         });
     });
 }
@@ -73,26 +87,17 @@ function addCategory() {
 function addDish() {
     cat2.find('.add-btn').click(function () {
         let inputData = cat2.find('input');
+        if (inputData.val() == "") return;
+        if (cat2.children('header').html().indexOf(':') == -1) return;
         $.post(`http://localhost:3001/categories/${selectedCategoryId}/dishes`,
             { name: `${inputData.val()}` },
             function (data, textStatus, jqXHR) {
                 if (jqXHR.status != 200) return;
                 renderDish(selectedCategoryId, data.id, data.name, data);
                 inputData.val('');
-                myTooltip(data.name, 'added');
-                selectedCategoryDishes.push(data);
-                // del(data.id, divOfCategory, data.name);
-                // divOfCategory.find('.category').click(function () {
-                //     headerChange(cat3, data.name);
-                //     let dishOpt = numId.dishes;
-                //     for (let n in dishOpt) {
-                //         let divOfDishOpt = $(`<div class='flex-div'><div class='category'>${n} : 
-                //                           ${dishOpt[n]}</div><button class="minus-btn">-</button></div>`);
-                //         getDivOfDishSettings().append(divOfDishOpt);
-                //     }
-                // });
+                myTooltip('', data.name, 'added');
+                arrayOfCategories.find((e) => e.id == selectedCategoryId).dishes.push(data);
             });
-
     });
 }
 addDish();
@@ -104,8 +109,16 @@ function delCategory(id, divOfData, name, ) {
             type: 'DELETE',
             data: JSON.stringify({ "id": id })
         });
+        dishesContainer.html('');
+        headerChange(cat2, '');
         divOfData.remove();
-        myTooltip(name, 'deleted');
+        myTooltip('', name, 'deleted');
+        for (let i = 0; i < arrayOfCategories.length; i++) {
+            if (arrayOfCategories[i].id == id) {
+                arrayOfCategories.splice(i, 1);
+                break;
+            }
+        }
     });
 }
 
@@ -117,19 +130,24 @@ function delDish(categoryId, dishId, divOfData, name) {
             data: JSON.stringify({ "id": dishId })
         });
         divOfData.remove();
-        myTooltip(name, 'deleted');
-        for (let i = 0; i < selectedCategoryDishes.length; i++) {
-            if (selectedCategoryDishes[i].id == dishId) {
-                selectedCategoryDishes.splice(selectedCategoryDishes[i], 1);
-                break;
+        myTooltip('', name, 'deleted');
+        for (let i = 0; i < arrayOfCategories.length; i++) {
+            if (arrayOfCategories[i].id == categoryId) {
+                let dish = arrayOfCategories[i].dishes;
+                for (let d = 0; d < dish.length; d++) {
+                    if (dish[d].id == dishId) {
+                        arrayOfCategories[i].dishes.splice(d, 1);
+                        break;
+                    }
+                }
             }
         }
     });
 }
 
-function myTooltip(name, action) {
+function myTooltip(str, name, action) {
     $('body').append($("<div/>").attr('class', 'tool'));
-    $(".tool").html(`<span>${name}</span> ${action}`);
+    $(".tool").html(`${str}<span>${name}</span> ${action}`);
     $(".tool").css({
         opacity: 0.8,
         display: "none"
@@ -144,4 +162,57 @@ function headerChange(category, categoryData) {
                                      <span class="name-dish-header">${categoryData}</span>`);
 }
 
+function editCategory(divOfCategory, categoryName, categoryId) {
+    divOfCategory.find('img').click(function () {
+        let inputDiv = $(`<div class="flex-div"><input type='text' placeholder='${categoryName}'></div>`);
+        let ok = $(`<img class="ok-img" src="../../img/icons/n2.png" alt="">`);
+        divOfCategory.find('.category').replaceWith(inputDiv);
+        divOfCategory.find('.minus-btn').replaceWith(ok);
+        handleEventCat1(divOfCategory, categoryId, categoryName, inputDiv, ok);
+        dishesContainer.html('');
+        headerChange(cat2, '');
+        getDivOfDishSettings().html('');
+        headerChange(cat3, '');
+    });
+}
+
+function updateCategory(divOfCategory, categoryId, categoryName) {
+    let newValue = divOfCategory.find('input').val();
+    $.ajax({
+        url: `http://localhost:3001/categories/${categoryId}`,
+        type: 'PUT',
+        contentType: 'application/json',
+        data: JSON.stringify({ "name": newValue }),
+        success: function (data) {
+            for (let i = 0; i < arrayOfCategories.length; i++) {
+                if (arrayOfCategories[i].id == categoryId) {
+                    arrayOfCategories[i] = data;
+                    break;
+                }
+            }
+            myTooltip(`Category with name: `, categoryName, 'was updated');
+            categories.html('');
+            renderAllCategories(); s
+        }
+    });
+}
+function handleEventCat1(divOfCategory, categoryId, categoryName) {
+    divOfCategory.find('input').focus().focusout(function () {
+        if (divOfCategory.find('input').val() == '') {
+            categories.html('');
+            renderAllCategories();
+            return
+        };
+        updateCategory(divOfCategory, categoryId, categoryName);
+    });
+    divOfCategory.find('input').keydown(function (e) {
+        if (e.which == 13) {
+            updateCategory(divOfCategory, categoryId, categoryName);
+        }
+        else if (e.which == 27) {
+            categories.html('');
+            renderAllCategories();
+        }
+    })
+}
 
