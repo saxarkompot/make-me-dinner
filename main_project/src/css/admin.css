@@ -34,15 +34,6 @@ header {
 
 .flex-div {
     display: flex;
-
-}
-
-.minus-btn {
-    height: inherit;
-    width: 60px;
-    font-size: 36px;
-    border-radius: 6px;
-    background-color: rgb(245, 190, 238)
 }
 
 .container {
@@ -51,16 +42,27 @@ header {
 }
 
 .add-btn {
-
-    font-size: 36px;
-    width: 60px;
     height: 60px;
+    background-color: rgb(156, 209, 245);
+}
+
+.minus-btn {
+    height: inherit;
+    background-color: rgb(245, 190, 238);
+}
+
+button {
+    line-height: 0;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 30px;
+    width: 60px;
     border-radius: 6px;
-    background-color: rgb(156, 209, 245)
+    font-weight: bold;
 }
 
 .input-but {
     display: flex;
+    width: 500 px;
 }
 
 input {
@@ -87,7 +89,7 @@ input {
     color: white;
     position: fixed;
     top: 1px;
-    right: 1px;        
+    right: 1px;
     border-bottom-left-radius: 6px;
     height: 50px;
     padding-top: 8px;
@@ -99,8 +101,82 @@ input {
     top: 40px;
 }
 
-.tool span{
+.tool span {
     font-size: 20px;
     color: rgb(230, 240, 87);
     font-weight: bold;
+}
+
+.edit-img {
+    display: none;
+    width: 30px;
+    filter: brightness(95%);
+    float: right;
+}
+
+.edit-img:hover {
+    transition: 200ms;
+    filter: brightness(130%);
+    width: 33px;
+}
+
+.category:hover img {
+    display: inline;
+}
+
+.ok-img {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.ok-img:hover {
+    transition: 200ms;
+    filter: brightness(140%);
+}
+
+.ok-img:active {
+    width: 58px;
+    height: 58px;
+    filter: brightness(90%);
+}
+
+body {
+    background-color: rgb(225, 254, 255);
+}
+
+.dish-opt-1 {
+    position: relative;
+    top: 20%;
+    background-color: rgb(155, 70, 252);
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 3px;
+    padding-left: 15px;
+    width: 150px;
+    height: 60px;
+    font-weight: bold;
+}
+
+.dish-opt-2 {
+    position: relative;
+    top: 20%;
+    background-color: rgb(136, 136, 243);
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-size: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 3px;
+    padding-left: 15px;
+    width: 290px;
+    height: 60px;
+    font-weight: bold;
+}
+
+.dish-opt-2:hover {
+    cursor: pointer;
+    background-color: rgb(238, 130, 122);
+    color: whitesmoke;
 }
