@@ -180,3 +180,25 @@ body {
     background-color: rgb(238, 130, 122);
     color: whitesmoke;
 }
+
+.image-picker {
+    position: absolute;
+    top: -50px;
+    height: 100px;
+    width: 440px;
+    font-weight: bold;
+    opacity: .8;
+}
+
+.new-image {
+    height: 100px;
+    width: 440px;
+    z-index: 1;
+}
+
+input[name='image'] {
+    position: relative;
+    z-index: 2;
+    top: -100px;
+   
+}

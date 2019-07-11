@@ -11,6 +11,8 @@ let cat3Html = `<header>Dish settings</header>
                 </div>`;
 let selectedCategoryId;
 let arrayOfCategories;
+let divImp = $(`<input type="file" name="image" />`);
+let divOfImage = $(".image-picker");
 
 function renderAllCategories() {
     for (let i = 0; i < arrayOfCategories.length; i++) {
@@ -23,10 +25,13 @@ function renderCategory(categoryId, categoryName, categoryDishes) {
     <img class="edit-img" src="../../img/icons/n2.png" alt=""></div><button class="minus-btn">-</button></div>`);
     categories.append(divOfCategory);
     divOfCategory.find('.category').click(function () {
+        divOfImage.html('');        
         cat2.find('input').val('');
         cat3.html(cat3Html);
-        headerChange(cat2, categoryName)
-        dishesContainer.html('');
+        //headerChange(cat2, categoryName)
+        let newImage = arrayOfCategories.find((e) => e.id == categoryId).imageUrl;
+        divOfImage.html(`<img class='new-image' src="${newImage}" alt=''>`);
+        editImage(categoryId);
         selectedCategoryId = categoryId;
         for (let j = 0; j < categoryDishes.length; j++) {
             renderDish(selectedCategoryId, categoryDishes[j].id, categoryDishes[j].name, categoryDishes[j]);
@@ -192,7 +197,7 @@ function updateCategory(divOfCategory, categoryId, categoryName) {
             }
             myTooltip(`Category with name: `, categoryName, 'was updated');
             categories.html('');
-            renderAllCategories(); s
+            renderAllCategories();
         }
     });
 }
@@ -216,3 +221,25 @@ function handleEventCat1(divOfCategory, categoryId, categoryName) {
     })
 }
 
+function editImage(categoryId) {
+    
+    divOfImage.append(divImp);
+    $('[type=file]').change(function () {
+        var formData = new FormData();
+        formData.append('image', this.files[0])
+        $.ajax({
+            url: `http://localhost:3001/categories/${categoryId}/images/`,
+            type: 'POST',
+            data: formData,
+            processData: false,  // tell jQuery not to process the data
+            contentType: false,  // tell jQuery not to set contentType
+            success: function (data) {
+                let newImage = arrayOfCategories.find((e) => e.id == categoryId).imageUrl;
+                divOfImage.html('');
+                divOfImage.html(`<img class='new-image' src="${newImage}" alt=''>`);
+                divOfImage.append(divImp);
+                console.log(data);
+            }
+        });
+    });
+}
