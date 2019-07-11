@@ -5,6 +5,9 @@ const categoryProvider = require('../services/category.provider');
 router.param('categoryId',
 	function (req, res, next) {
     req.params.imageContext = 'category_' + req.params.categoryId;
+    req.params.imageHandler = function(imageUrl){
+        return categoryProvider.update({id: req.params.categoryId, imageUrl})
+    };
 		next();
 	});
 

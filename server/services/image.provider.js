@@ -26,5 +26,8 @@ module.exports = {
 					? Promise.reject(new errors.NotFound("Category is not found"))
 					: db.Image.create(propsToUpdate)
 			)
+	},
+	getImageUrl: function(image){
+		return `/images/${image.id}?v=${(new Date(image.updatedAt)).valueOf()}`; 
 	}
 }

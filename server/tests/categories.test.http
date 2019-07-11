@@ -55,5 +55,7 @@ Content-Type: multipart/form-data; boundary=----WebKitFormBoundary393K9l94yUYSfz
 ###
 GET http://localhost:3001/categories/4/images/default
 ###
+GET http://localhost:3001/images/4
+###
 DELETE http://localhost:3001/categories/4
 ###

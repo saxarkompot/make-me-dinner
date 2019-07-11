@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function (sequelize, DataTypes) {
-	var User = sequelize.define('Image', {
+	var Image = sequelize.define('Image', {
 		context: DataTypes.STRING,
 		content: DataTypes.BLOB
 	}, {
@@ -10,5 +10,5 @@ module.exports = function (sequelize, DataTypes) {
 			}
 		}
 	});
-	return User;
+	return Image;
 };

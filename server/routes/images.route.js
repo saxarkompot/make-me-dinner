@@ -26,7 +26,10 @@ function addOrUpdateImage(req, res, next) {
     req.params.imageContext,
     { context: imageContext, content: new Buffer(req.file.buffer) }
   )
-    .then(result => res.json({ name: 'image' + req.params.imageContext }))
+    .then(image =>
+      req.params.imageHandler(imageProvider.getImageUrl(image))
+        .then(_ => res.json({ imageUrl: imageProvider.getImageUrl(image) }))
+    )
     .catch(next);
   //res.type("jpeg") && res.send(new Buffer(req.file.buffer));
 }

@@ -6,12 +6,7 @@ module.exports = function (sequelize, DataTypes) {
 			validate: { min: 2, max:20, is: ["^[a-z]+$",'i'] },
 			unique : true},
 
-		imageUrl: {
-			type: DataTypes.VIRTUAL,
-			get: function(){
-				return 'http://localhost:3001/categories/' + this.getDataValue('id') + '/images/default'
-			}
-		}
+		imageUrl: DataTypes.STRING
 	}, {
 		freezeTableName: true,
 		classMethods: {
