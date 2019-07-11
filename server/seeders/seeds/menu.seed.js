@@ -2,7 +2,7 @@ module.exports = {
     categories: [
         {
             name: "soups",
-            imageId: 1,
+            imageUrl: "/images/1",
             dishes: [
                 {
                     name: "Английский крем-суп",
@@ -28,7 +28,7 @@ module.exports = {
 		},
         {
             name: "burgers",
-            imageId: 2,
+            imageUrl: "/images/2",
             dishes: [
                 {
                     name: "Burger с фалафелем и харриса",
@@ -49,7 +49,7 @@ module.exports = {
 		},
         {
             name: "salads",
-            imageId: 3,
+            imageUrl: "/images/3",
             dishes: [
                 {
                     name: "Салат «Греческий»",
