@@ -47,6 +47,11 @@ POST http://localhost:3001/categories/4/images/
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary393K9l94yUYSfz23
 
 < ./image.body
+### Update an image
+PUT http://localhost:3001/categories/4/images/
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary393K9l94yUYSfz23
+
+< ./image.body
 ###
 GET http://localhost:3001/categories/4/images/default
 ###
