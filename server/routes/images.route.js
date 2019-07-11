@@ -13,15 +13,23 @@ router.get('/:imageId', function (req, res, next) {
       .catch(next);
 });
 
-router.post('/', upload.single('image'), postImage);
-router.post('/:imageId', upload.single('image'), postImage);
+router.post('/', upload.single('image'), addOrUpdateImage);
+router.post('/:imageId', upload.single('image'), addOrUpdateImage);
 
-function postImage(req, res, next) {
+router.put('/', upload.single('image'), addOrUpdateImage);
+router.put('/:imageId', upload.single('image'), addOrUpdateImage);
+
+function addOrUpdateImage(req, res, next) {
   imageContext = req.params.imageContext + '_' + (req.params.imageId || 'default');
-  imageProvider.add({context: imageContext, content: new Buffer(req.file.buffer)})
+  imageProvider.addOrUpdate(
+    (req.params.imageId || 'default'),
+    req.params.imageContext,
+    { context: imageContext, content: new Buffer(req.file.buffer) }
+  )
     .then(result => res.json({ name: 'image' + req.params.imageContext }))
     .catch(next);
   //res.type("jpeg") && res.send(new Buffer(req.file.buffer));
 }
+
 
 module.exports = router;

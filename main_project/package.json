@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "gulpfile.js",
   "dependencies": {
-    "lite-server": "^2.5.3",
+    "eslint": "^5.16.0",
     "normalize-scss": "^7.0.1",
     "normalize.css": "^8.0.1",
     "serve": "^11.0.2"
