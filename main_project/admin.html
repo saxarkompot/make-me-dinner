@@ -8,15 +8,16 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="src/css/admin.css">
     <script src="src/js/admin.js" defer></script>
+    <script src="src/js/category.js" defer></script>
 </head>
 
 <body>
     <div class='main'>
         <div class='container'>
-            <div class='category-1'>
+            <div class='category-1'>                    
                 <header>
                     <div class="title">
-                        Categories <span class="separator">:</span> <span class="name-dish-header"></span>
+                        Categories
                     </div>
                 </header>
                 <div class="div-of-categories"></div>
@@ -27,9 +28,12 @@
             </div>
             <div class='category-2'>
                 <header>
-                    <div class="image-picker"></div>
+                    <div class="image-picker">
+                        <img class='new-image' src="" alt=''>
+                        <img class='photo-image' src="/img/icons/Foto.png" alt=''>
+                    </div>
                     <div class="title">
-                        Dishes <span class="separator">:</span> <span class="name-dish-header"></span>
+                        Dishes <span class="separator"></span> <span class="name-dish-header"></span>
                     </div>
                 </header>
                 <div class="div-of-dishes"></div>
@@ -39,9 +43,10 @@
                 </div>
             </div>
             <div class='category-3'>
+            <input type="file" name="image" />
                 <header>
                     <div class="title">
-                        Dish settings <span class="separator">:</span> <span class="name-dish-header"></span>
+                        Dish settings <span class="separator"></span> <span class="name-dish-header"></span>
                     </div>
                 </header>
                 <div class="div-of-dish-settings"></div>

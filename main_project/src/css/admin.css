@@ -78,8 +78,6 @@ input {
 }
 
 .name-dish-header {
-    background-color: rgb(247, 170, 165);
-    border-radius: 6px;
     font-weight: bold;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
@@ -186,19 +184,49 @@ body {
     top: -50px;
     height: 100px;
     width: 440px;
-    font-weight: bold;
-    opacity: .8;
+   
 }
 
 .new-image {
-    height: 100px;
+    height: 113px;
     width: 440px;
     z-index: 1;
+    opacity: 0.7;
 }
 
 input[name='image'] {
-    position: relative;
-    z-index: 2;
+    position: absolute;    
     top: -100px;
-   
+    opacity: 0;
+    z-index: -10;
+    height: 0.1px;    
+}
+
+.photo-image {
+    position: absolute;
+    top: 10px; 
+    left: 400px;
+    height: 40px;
+    width: 40px;
+    z-index: 10;
+}
+
+.photo-image:hover{
+    cursor: pointer;    
+    transition: 200ms;
+    filter: brightness(130%);
+    width: 45px;
+    height: 45px;
+}
+
+.category-2 .title{
+    position: relative;   
+}
+
+.no-photo{
+    height: 113px;
+    width: 440px;
+    z-index: -5;
+    opacity: 0.6;
+    top: -100px;
 }

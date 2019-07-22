@@ -21,7 +21,7 @@ class MainView {
         for (let i = 0; i < model.categories.length; i++) {
             let dishes = model.categories[i].dishes;
             let nameOfCategory = model.categories[i].name;
-            let imageOfCategory = model.categories[i].imageUrl;
+            let imageOfCategory = `http://localhost:3001${model.categories[i].imageUrl}`;
             let category = $(`<div class='category'>
                               <div class="category-name-image">
                               <div class="category-name">${nameOfCategory}</div>
