@@ -1,3 +1,4 @@
+import dataProvider from "./data-provider.js";
 let categories = $('.div-of-categories');
 let dishesContainer = $('.div-of-dishes');
 let getDivOfDishSettings = () => $('.div-of-dish-settings');
@@ -13,16 +14,16 @@ let cat3Html = `<input type="file" name="image" />
                 <input type="text"><div></div>                
                 </div>`;
 let selectedCategoryId;
-let arrayOfCategories;
-let divOfImage = $(".image-picker");
 let divImp = $(`<input type="file" name="image" />`);
 $('.new-image').on('error', function () {
-    $('.new-image').attr('src',"/img/icons/no-image.png");
+    $('.new-image').attr('src', "/img/icons/no-image.png");
 });
 
+
+
 function renderAllCategories() {
-    for (let i = 0; i < arrayOfCategories.length; i++) {
-        renderCategory(arrayOfCategories[i].id, arrayOfCategories[i].name, arrayOfCategories[i].dishes);
+    for (let i = 0; i < dataProvider.arrayOfCategories.length; i++) {
+        renderCategory(dataProvider.arrayOfCategories[i].id, dataProvider.arrayOfCategories[i].name, dataProvider.arrayOfCategories[i].dishes);
     };
 }
 
@@ -34,7 +35,7 @@ function renderCategory(categoryId, categoryName, categoryDishes) {
         cat2.find('input').val('');
         cat3.html(cat3Html);
         headerChange(cat2, categoryName);
-        let newImage = `http://localhost:3001${arrayOfCategories.find((e) => e.id == categoryId).imageUrl}`;
+        let newImage = `http://localhost:3001${dataProvider.arrayOfCategories.find((e) => e.id == categoryId).imageUrl}`;
         $('.new-image').attr("src", newImage);
         selectedCategoryId = categoryId;
         dishesContainer.html('');
@@ -48,10 +49,8 @@ function renderCategory(categoryId, categoryName, categoryDishes) {
 }
 
 function fetchCategories() {
-    $.get("http://localhost:3001/categories", function (data, textStatus, jqXHR) {
-        if (jqXHR.status != 200) return;
-        arrayOfCategories = data;
-        renderAllCategories();
+    dataProvider.getAllCategories().then(function () {
+        renderAllCategories()
     });
     addCategory();
 };
@@ -83,14 +82,10 @@ function addCategory() {
     });
     cat1.find('.add-btn').click(function () {
         let inputData = cat1.find('input');
-        $.post(`http://localhost:3001/categories/`, { name: `${inputData.val()}` }, function (data, textStatus, jqXHR) {
-            if (jqXHR.status != 200) return;
-            data.dishes = [];
+        dataProvider.putCategory(inputData.val()).then(data => {
             renderCategory(data.id, data.name, data.dishes)
             inputData.val('');
             myTooltip('', data.name, 'added');
-            arrayOfCategories.push(data);
-
         });
     });
 }
@@ -100,59 +95,32 @@ function addDish() {
         let inputData = cat2.find('input');
         if (inputData.val() == "") return;
         if (cat2.children('header').html().indexOf(':') == -1) return;
-        $.post(`http://localhost:3001/categories/${selectedCategoryId}/dishes`,
-            { name: `${inputData.val()}` },
-            function (data, textStatus, jqXHR) {
-                if (jqXHR.status != 200) return;
-                renderDish(selectedCategoryId, data.id, data.name, data);
-                inputData.val('');
-                myTooltip('', data.name, 'added');
-                arrayOfCategories.find((e) => e.id == selectedCategoryId).dishes.push(data);
-            });
+        dataProvider.putDish(inputData.val(), selectedCategoryId).then(data => {
+            renderDish(selectedCategoryId, data.id, data.name, data);
+            inputData.val('');
+            myTooltip('', data.name, 'added');
+        });
     });
 }
 addDish();
 
 function delCategory(id, divOfData, name, ) {
     divOfData.find('.minus-btn').click(function () {
-        $.ajax({
-            url: `http://localhost:3001/categories/${id}`,
-            type: 'DELETE',
-            data: JSON.stringify({ "id": id })
+        dataProvider.removeCategory(id).then(_ => {
+            dishesContainer.html('');
+            headerChange(cat2, '');
+            divOfData.remove();
+            myTooltip('', name, 'deleted');
         });
-        dishesContainer.html('');
-        headerChange(cat2, '');
-        divOfData.remove();
-        myTooltip('', name, 'deleted');
-        for (let i = 0; i < arrayOfCategories.length; i++) {
-            if (arrayOfCategories[i].id == id) {
-                arrayOfCategories.splice(i, 1);
-                break;
-            }
-        }
     });
 }
 
 function delDish(categoryId, dishId, divOfData, name) {
     divOfData.find('.minus-btn').click(function () {
-        $.ajax({
-            url: `http://localhost:3001/categories/${categoryId}/dishes/${dishId}`,
-            type: 'DELETE',
-            data: JSON.stringify({ "id": dishId })
+        dataProvider.removeDish(categoryId, dishId).then(_ => {
+            divOfData.remove();
+            myTooltip('', name, 'deleted');
         });
-        divOfData.remove();
-        myTooltip('', name, 'deleted');
-        for (let i = 0; i < arrayOfCategories.length; i++) {
-            if (arrayOfCategories[i].id == categoryId) {
-                let dish = arrayOfCategories[i].dishes;
-                for (let d = 0; d < dish.length; d++) {
-                    if (dish[d].id == dishId) {
-                        arrayOfCategories[i].dishes.splice(d, 1);
-                        break;
-                    }
-                }
-            }
-        }
     });
 }
 
@@ -190,25 +158,17 @@ function editCategory(divOfCategory, categoryName, categoryId) {
     });
 }
 
-function updateCategory(divOfCategory, categoryId, categoryName) {
+async function updateCategory(divOfCategory, categoryId, categoryName) {
     let newValue = divOfCategory.find('input').val();
-    $.ajax({
-        url: `http://localhost:3001/categories/${categoryId}`,
-        type: 'PUT',
-        contentType: 'application/json',
-        data: JSON.stringify({ "name": newValue }),
-        success: function (data) {
-            for (let i = 0; i < arrayOfCategories.length; i++) {
-                if (arrayOfCategories[i].id == categoryId) {
-                    arrayOfCategories[i] = data;
-                    break;
-                }
-            }
-            myTooltip(`Category with name: `, categoryName, 'was updated');
-            categories.html('');
-            renderAllCategories();
-        }
-    });
+    try {
+        await dataProvider.updateCategory(categoryId, newValue);
+        myTooltip(`Category with name: `, categoryName, 'was updated');
+        categories.html('');
+        renderAllCategories();
+    }
+    catch{
+        myTooltip(`Error appeared when `, categoryName, 'was updated')
+    }
 }
 function handleEventCat1(divOfCategory, categoryId, categoryName) {
     divOfCategory.find('input').focus().focusout(function () {
@@ -243,22 +203,14 @@ photo();
 function fileUpload() {
     divImp.change(function () {
         var formData = new FormData();
-        formData.append('image', this.files[0])
-        $.ajax({
-            url: `http://localhost:3001/categories/${selectedCategoryId}/images/`,
-            type: 'POST',
-            data: formData,
-            processData: false,  // tell jQuery not to process the data
-            contentType: false,  // tell jQuery not to set contentType
-            success: function (data) {
-                arrayOfCategories.find((e) => e.id == selectedCategoryId).imageUrl = data.imageUrl;
-                myTooltip(`In category with name: `, arrayOfCategories.find(e => e.id == selectedCategoryId).name, 'was add image');
-                let newImage = `http://localhost:3001${data.imageUrl}`;                
-                $('.new-image').attr('src',newImage);
-                console.log(data);
-            }
+        formData.append('image', this.files[0]);
+        dataProvider.updateImage(selectedCategoryId, formData).then(data => {
+            myTooltip(`In category with name: `, dataProvider.arrayOfCategories.find(e => e.id == selectedCategoryId).name, 'was add image');
+            let newImage = `http://localhost:3001${data.imageUrl}`;
+            $('.new-image').attr('src', newImage);
+            console.log(data);
         });
     });
 }
 
-fileUpload();
+fileUpload(); 
