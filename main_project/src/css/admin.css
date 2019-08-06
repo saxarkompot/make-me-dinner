@@ -29,12 +29,12 @@ header {
     width: 440px;
     height: 40px;
     font-weight: bold;
+    transition: 300ms;
 }
 
 .category:hover {
     cursor: pointer;
-    background-color: rgb(224, 216, 186);     
-    transition: 300ms;    
+    background-color: rgb(224, 216, 186);
     font-size: 16px;
 }
 
@@ -50,22 +50,33 @@ header {
 .add-btn {
     height: 42px;
     background-color: rgb(156, 209, 245);
+    transition: 300ms;
+    border: 0;
 }
 
 .minus-btn {
-    height: inherit;
+    height: 42px;
     background-color: rgb(207, 116, 116);
+    transition: 300ms;
+    border: 0;
 }
 
-.minus-btn:hover{
-    transition: 300ms;
+.minus-btn:hover {
     filter: brightness(120%);
+    font-weight: bold;
+    font-size: 35px;
+    border-radius: 10px;
 }
 
 
-.add-btn:hover{
-    transition: 300ms;
+.add-btn:hover {
+    background-color: rgb(147, 245, 147);
     filter: brightness(120%);
+    font-weight: bold;
+    font-size: 35px;
+    padding-left: 3px;
+    transform: rotate(180deg);
+    border-radius: 10px;
 }
 
 button {
@@ -75,7 +86,12 @@ button {
     width: 40px;
     height: 40px;
     border-radius: 6px;
-    font-weight: bold;
+}
+
+button,
+button:active,
+button:focus {
+    outline: none;
 }
 
 .input-but {
@@ -93,6 +109,12 @@ input {
     width: 440px;
     height: 40px;
     font-weight: bold;
+    border: 0;
+}
+
+input:hover {
+    border: 1;
+    border-color: blueviolet;
 }
 
 .name-dish-header {
@@ -100,7 +122,7 @@ input {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.tool {
+.tooltip {
     background-color: rgb(53, 32, 32);
     color: white;
     position: fixed;
@@ -117,11 +139,26 @@ input {
     top: 40px;
 }
 
-.tool span {
+.tooltip span {
     font-size: 20px;
     color: rgb(230, 240, 87);
     font-weight: bold;
 }
+
+.error {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgb(53, 32, 32);
+    color: rgb(255, 0, 85);
+    position: fixed;
+    top: 1px;
+    right: 1px;
+    border-bottom-left-radius: 6px;
+    height: 50px;
+    padding-top: 8px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 
 .edit-img {
     display: none;
@@ -169,7 +206,7 @@ input {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-radius: 3px;
     padding-left: 15px;
-    width: 150px;
+    width: 110px;
     height: 40px;
     font-weight: bold;
 }
@@ -184,16 +221,16 @@ input {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-radius: 3px;
     padding-left: 15px;
-    width: 290px;
+    width: 330px;
     height: 40px;
     font-weight: bold;
+    transition: 300ms;
 }
 
 .dish-opt-2:hover {
     cursor: pointer;
     background-color: rgb(238, 130, 122);
-    color: whitesmoke;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .image-picker {
@@ -201,7 +238,6 @@ input {
     top: -50px;
     height: 100px;
     width: 440px;
-   
 }
 
 .new-image {
@@ -209,38 +245,39 @@ input {
     width: 440px;
     z-index: 1;
     opacity: 0.7;
+    border-radius: 25px;
 }
 
 input[name='image'] {
-    position: absolute;    
+    position: absolute;
     top: -100px;
     opacity: 0;
     z-index: -10;
-    height: 0.1px;    
+    height: 0.1px;
 }
 
 .photo-image {
     position: absolute;
-    top: 10px; 
+    top: 10px;
     left: 400px;
     height: 40px;
     width: 40px;
     z-index: 10;
+    transition: 200ms;
 }
 
-.photo-image:hover{
-    cursor: pointer;    
-    transition: 200ms;
+.photo-image:hover {
+    cursor: pointer;
     filter: brightness(130%);
     width: 45px;
     height: 45px;
 }
 
-.category-2 .title{
-    position: relative;   
+.category-2 .title {
+    position: relative;
 }
 
-.no-photo{
+.no-photo {
     height: 113px;
     width: 440px;
     z-index: -5;

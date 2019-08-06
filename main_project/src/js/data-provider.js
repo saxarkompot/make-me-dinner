@@ -1,22 +1,40 @@
 const host = "http://localhost:3001";
-let dataProvider = {
-    arrayOfCategories: [],
-    getAllCategories: async function () {
+const singleton = Symbol('singleton');
+const singletonEnforcer = Symbol('singletonEnforcer');
+class DataProvider {
+    constructor(enforcer) {
+        this.arrayOfCategories = []
+        if (enforcer != singletonEnforcer) {
+            throw Error("no-no-no")
+        }
+    }
+    static getInstanse() {
+        if (!this[singleton]) {
+            return this[singleton] = new DataProvider(singletonEnforcer)
+        }
+        else {
+            return this[singleton]
+        }
+    }
+    getCategoryById(selectedCategoryId) {
+        return this.arrayOfCategories.find((e) => e.id == selectedCategoryId)
+    }
+    async getAllCategories() {
         var data = await $.get(`${host}/categories`);
-        dataProvider.arrayOfCategories = data;
-    },
-    putCategory: async function (impValue) {
+        this.arrayOfCategories = data;
+    }
+    async putCategory(impValue) {
         var data = await $.post(`${host}/categories/`, { name: `${impValue}` });
         data.dishes = [];
-        dataProvider.arrayOfCategories.push(data);
+        this.arrayOfCategories.push(data);
         return data;
-    },
-    putDish: async function (impValue, selectedCategoryId) {
+    }
+    async putDish(impValue, selectedCategoryId) {
         var data = await $.post(`${host}/categories/${selectedCategoryId}/dishes`, { name: `${impValue}` });
-        dataProvider.arrayOfCategories.find((e) => e.id == selectedCategoryId).dishes.push(data);
+        this.getCategoryById(selectedCategoryId).dishes.push(data);
         return data;
-    },
-    removeCategory: async function (id) {
+    }
+    async removeCategory(id) {
         await $.ajax({
             url: `${host}/categories/${id}`,
             type: 'DELETE',
@@ -28,40 +46,40 @@ let dataProvider = {
                 break;
             }
         }
-    },
-    removeDish: async function (categoryId, dishId) {
+    }
+    async removeDish(categoryId, dishId) {
         await $.ajax({
             url: `${host}/categories/${categoryId}/dishes/${dishId}`,
             type: 'DELETE',
             data: JSON.stringify({ "id": dishId })
         });
-        for (let i = 0; i < dataProvider.arrayOfCategories.length; i++) {
-            if (dataProvider.arrayOfCategories[i].id == categoryId) {
-                let dish = dataProvider.arrayOfCategories[i].dishes;
+        for (let i = 0; i < this.arrayOfCategories.length; i++) {
+            if (this.arrayOfCategories[i].id == categoryId) {
+                let dish = this.arrayOfCategories[i].dishes;
                 for (let d = 0; d < dish.length; d++) {
                     if (dish[d].id == dishId) {
-                        dataProvider.arrayOfCategories[i].dishes.splice(d, 1);
+                        this.arrayOfCategories[i].dishes.splice(d, 1);
                         break;
                     }
                 }
             }
         }
-    },
-    updateCategory: async function (categoryId, newValue) {
-        var data = await $.ajax({
+    }
+    async updateCategory(categoryId, newValue) {
+        await $.ajax({
             url: `${host}/categories/${categoryId}`,
             type: 'PUT',
             contentType: 'application/json',
             data: JSON.stringify({ "name": newValue })
-        })
-        for (let i = 0; i < dataProvider.arrayOfCategories.length; i++) {
-            if (dataProvider.arrayOfCategories[i].id == categoryId) {
-                dataProvider.arrayOfCategories[i] = data;
+        });
+        for (let i = 0; i < this.arrayOfCategories.length; i++) {
+            if (this.arrayOfCategories[i].id == categoryId) {
+                this.arrayOfCategories[i].name = newValue;
                 break;
             }
         }
-    },
-    updateImage: async function (selectedCategoryId, formData) {
+    }
+    async updateImage(selectedCategoryId, formData) {
         var data = await $.ajax({
             url: `${host}/categories/${selectedCategoryId}/images/`,
             type: 'POST',
@@ -69,9 +87,9 @@ let dataProvider = {
             processData: false,
             contentType: false
         });
-        dataProvider.arrayOfCategories.find((e) => e.id == selectedCategoryId).imageUrl = data.imageUrl;
+        this.getCategoryById(selectedCategoryId).imageUrl = data.imageUrl;
         return data
     }
 }
 
-export default dataProvider;
+export default DataProvider;
