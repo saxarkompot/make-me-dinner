@@ -7,14 +7,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="src/css/admin.css">
-    <script src="src/js/admin.js" defer></script>
-    <script src="src/js/category.js" defer></script>
+    <script src="src/js/admin.js" defer type="module"></script>   
 </head>
 
 <body>
     <div class='main'>
         <div class='container'>
-            <div class='category-1'>                    
+            <div class='category-1'>
                 <header>
                     <div class="title">
                         Categories
@@ -40,10 +39,9 @@
                 <div class="input-but">
                     <input type="text">
                     <button class="add-btn">+</button>
-                </div>
+                </div>               
             </div>
-            <div class='category-3'>
-            <input type="file" name="image" />
+            <div class='category-3'>                
                 <header>
                     <div class="title">
                         Dish settings <span class="separator"></span> <span class="name-dish-header"></span>
@@ -51,7 +49,7 @@
                 </header>
                 <div class="div-of-dish-settings"></div>
                 <div class="input-but">
-                    <input type="text">
+                    <input type="text" disabled='disabled'>
                     <div></div>
                 </div>
             </div>

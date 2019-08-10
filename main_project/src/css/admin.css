@@ -1,7 +1,12 @@
+body {
+    background-color: #E7E3D4;
+}
+
 header {
     position: relative;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 40px;
+    text-shadow: #E7E3D4 0px 0px 7px;
 }
 
 .div-of-categoties {
@@ -14,22 +19,23 @@ header {
 .category {
     position: relative;
     top: 20%;
-    background-color: rgb(150, 150, 238);
+    background-color: rgb(161, 161, 219);
     margin-top: 2px;
     margin-bottom: 2px;
-    font-size: 20px;
+    font-size: 14px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-radius: 3px;
     padding-left: 15px;
     width: 440px;
-    height: 60px;
+    height: 40px;
     font-weight: bold;
+    transition: 300ms;
 }
 
 .category:hover {
     cursor: pointer;
-    background-color: rgb(238, 130, 122);
-    color: whitesmoke;
+    background-color: rgb(224, 216, 186);
+    font-size: 16px;
 }
 
 .flex-div {
@@ -42,22 +48,50 @@ header {
 }
 
 .add-btn {
-    height: 60px;
+    height: 42px;
     background-color: rgb(156, 209, 245);
+    transition: 300ms;
+    border: 0;
 }
 
 .minus-btn {
-    height: inherit;
-    background-color: rgb(245, 190, 238);
+    height: 42px;
+    background-color: rgb(207, 116, 116);
+    transition: 300ms;
+    border: 0;
+}
+
+.minus-btn:hover {
+    filter: brightness(120%);
+    font-weight: bold;
+    font-size: 35px;
+    border-radius: 10px;
+}
+
+
+.add-btn:hover {
+    background-color: rgb(147, 245, 147);
+    filter: brightness(120%);
+    font-weight: bold;
+    font-size: 35px;
+    padding-left: 3px;
+    transform: rotate(180deg);
+    border-radius: 10px;
 }
 
 button {
     line-height: 0;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 30px;
-    width: 60px;
+    width: 40px;
+    height: 40px;
     border-radius: 6px;
-    font-weight: bold;
+}
+
+button,
+button:active,
+button:focus {
+    outline: none;
 }
 
 .input-but {
@@ -73,8 +107,14 @@ input {
     border-radius: 3px;
     padding-left: 15px;
     width: 440px;
-    height: 60px;
+    height: 40px;
     font-weight: bold;
+    border: 0;
+}
+
+input:hover {
+    border: 1;
+    border-color: blueviolet;
 }
 
 .name-dish-header {
@@ -82,7 +122,7 @@ input {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.tool {
+.tooltip {
     background-color: rgb(53, 32, 32);
     color: white;
     position: fixed;
@@ -99,23 +139,40 @@ input {
     top: 40px;
 }
 
-.tool span {
+.tooltip span {
     font-size: 20px;
     color: rgb(230, 240, 87);
     font-weight: bold;
 }
+
+.error {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: rgb(53, 32, 32);
+    color: rgb(255, 0, 85);
+    position: fixed;
+    top: 1px;
+    right: 1px;
+    border-bottom-left-radius: 6px;
+    height: 50px;
+    padding-top: 8px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 
 .edit-img {
     display: none;
     width: 30px;
     filter: brightness(95%);
     float: right;
+    opacity: 0.6;
 }
 
 .edit-img:hover {
     transition: 200ms;
     filter: brightness(130%);
     width: 33px;
+    opacity: 1;
 }
 
 .category:hover img {
@@ -123,8 +180,8 @@ input {
 }
 
 .ok-img {
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
 }
 
@@ -139,22 +196,18 @@ input {
     filter: brightness(90%);
 }
 
-body {
-    background-color: rgb(225, 254, 255);
-}
-
 .dish-opt-1 {
     position: relative;
     top: 20%;
     background-color: rgb(155, 70, 252);
     margin-top: 2px;
     margin-bottom: 2px;
-    font-size: 20px;
+    font-size: 14px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-radius: 3px;
     padding-left: 15px;
-    width: 150px;
-    height: 60px;
+    width: 110px;
+    height: 40px;
     font-weight: bold;
 }
 
@@ -164,19 +217,20 @@ body {
     background-color: rgb(136, 136, 243);
     margin-top: 2px;
     margin-bottom: 2px;
-    font-size: 20px;
+    font-size: 14px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-radius: 3px;
     padding-left: 15px;
-    width: 290px;
-    height: 60px;
+    width: 330px;
+    height: 40px;
     font-weight: bold;
+    transition: 300ms;
 }
 
 .dish-opt-2:hover {
     cursor: pointer;
     background-color: rgb(238, 130, 122);
-    color: whitesmoke;
+    font-size: 16px;
 }
 
 .image-picker {
@@ -184,7 +238,6 @@ body {
     top: -50px;
     height: 100px;
     width: 440px;
-   
 }
 
 .new-image {
@@ -192,38 +245,39 @@ body {
     width: 440px;
     z-index: 1;
     opacity: 0.7;
+    border-radius: 25px;
 }
 
 input[name='image'] {
-    position: absolute;    
+    position: absolute;
     top: -100px;
     opacity: 0;
     z-index: -10;
-    height: 0.1px;    
+    height: 0.1px;
 }
 
 .photo-image {
     position: absolute;
-    top: 10px; 
+    top: 10px;
     left: 400px;
     height: 40px;
     width: 40px;
     z-index: 10;
+    transition: 200ms;
 }
 
-.photo-image:hover{
-    cursor: pointer;    
-    transition: 200ms;
+.photo-image:hover {
+    cursor: pointer;
     filter: brightness(130%);
     width: 45px;
     height: 45px;
 }
 
-.category-2 .title{
-    position: relative;   
+.category-2 .title {
+    position: relative;
 }
 
-.no-photo{
+.no-photo {
     height: 113px;
     width: 440px;
     z-index: -5;
